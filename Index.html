@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Book your barber appointment and check the queue at Royal Cuts.">
+  <title>Royal Cuts | Barber Studio</title>
+
+  <style>
+    :root {
+      --gold: #d8b36a;
+      --bg: #101010;
+      --panel: #1b1b1b;
+      --text: #ffffff;
+      --muted: #b9b9b9;
+      --border: #373737;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      padding: 75px 6%;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, #49391f 0%, #101010 70%);
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 8vw, 68px);
+      line-height: 1.1;
+      margin: 20px 0;
+    }
+
+    h1 span,
+    .gold {
+      color: var(--gold);
+    }
+
+    .hero p,
+    .muted {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 14px 20px;
+      background: var(--gold);
+      color: #111;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    section {
+      padding: 42px 6%;
+    }
+
+    .section-title {
+      font-size: 29px;
+      margin: 0 0 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit, minmax(min(100%, 220px), 1fr)
+      );
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 23px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .price {
+      color: var(--gold);
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .queue-number {
+      color: var(--gold);
+      font-size: 42px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 5px;
+      background: #332b1b;
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    .notice {
+      padding: 14px;
+      margin-top: 18px;
+      border-left: 3px solid var(--gold);
+      background: #1b1b1b;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    form {
+      max-width: 600px;
+      margin-top: 22px;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #222;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 1px solid var(--gold);
+    }
+
+    #message {
+      margin-top: 20px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 28px 6%;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 17px 5%;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 55px 5%;
+      }
+
+      section {
+        padding: 32px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">✂ ROYAL CUTS</div>
+
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#queue">Queue</a>
+      <a href="#booking">Book Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">GROOMING • STYLE • CONFIDENCE</div>
+      <h1>Your Style.<br><span>Your Signature.</span></h1>
+      <p>Premium grooming. Skilled hands. A better haircut experience.</p>
+      <a class="button" href="#booking">BOOK AN APPOINTMENT</a>
+    </section>
+
+    <section id="queue">
+      <h2 class="section-title">Today's Queue</h2>
+      <p class="muted">
+        Check the estimated wait before visiting our shop.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="muted">Customers waiting</div>
+          <div class="queue-number" id="queueCount">—</div>
+          <span class="badge">Demo — not live</span>
+        </div>
+
+        <div class="card">
+          <div class="muted">Estimated waiting time</div>
+          <div class="queue-number" id="waitTime">—</div>
+          <span class="badge" id="shopStatus">Checking hours</span>
+        </div>
+      </div>
+
+      <p class="muted">
+        Opening hours: 9:00 AM – 9:00 PM<br>
+        Weekly holiday: Tuesday
+      </p>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">Our Services</h2>
+      <p class="muted">Choose the service you need.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Classic Haircut</h3>
+          <p class="muted">A clean, classic look.</p>
+          <div class="price">₹100</div>
+          <p class="muted">Approx. 30 minutes</p>
+        </div>
+
+        <div class="card">
+          <h3>Beard Styling</h3>
+          <p class="muted">A neat, refined finish.</p>
+          <div class="price">₹60</div>
+          <p class="muted">Approx. 15 minutes</p>
+        </div>
+
+        <div class="card">
+          <h3>Haircut + Beard</h3>
+          <p class="muted">A complete grooming session.</p>
+          <div class="price">₹150</div>
+          <p class="muted">Approx. 45 minutes</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <h2 class="section-title">Request an Appointment</h2>
+      <p class="muted">
+        Choose your preferred time. The barber must approve
+        your request before it becomes a confirmed booking.
+      </p>
+
+      <div class="notice" id="openingNotice"></div>
+
+      <form id="bookingForm">
+        <label for="name">Your name</label>
+        <input id="name" type="text" maxlength="60"
+          placeholder="Enter your name" required>
+
+        <label for="phone">WhatsApp number</label>
+        <input id="phone" type="tel" inputmode="numeric"
+          pattern="[0-9]{10}" maxlength="10"
+          placeholder="10-digit mobile number" required>
+
+        <label for="service">Select service</label>
+        <select id="service" required>
+          <option value="Classic Haircut" data-minutes="30">
+            Classic Haircut — ₹100
+          </option>
+          <option value="Beard Styling" data-minutes="15">
+            Beard Styling — ₹60
+          </option>
+          <option value="Haircut + Beard" data-minutes="45">
+            Haircut + Beard — ₹150
+          </option>
+        </select>
+
+        <label for="time">Preferred time today</label>
+        <select id="time" required></select>
+
+        <button class="button" id="submitButton" type="submit">
+          SUBMIT REQUEST
+        </button>
+      </form>
+
+      <div id="message" aria-live="polite"></div>
+
+      <h3>Your demo requests</h3>
+      <div id="requests" class="grid"></div>
+
+      <p class="muted">
+        Demo only: requests are saved on this device.
+        They are not sent to the barber or confirmed.
+        Payment is made at the shop.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <strong class="gold">ROYAL CUTS</strong><br>
+    Sharp style. Timeless confidence.<br>
+    © <span id="year"></span> Royal Cuts
+  </footer>
+
+  <script>
+    const form = document.getElementById("bookingForm");
+    const timeSelect = document.getElementById("time");
+    const notice = document.getElementById("openingNotice");
+    const message = document.getElementById("message");
+    const submitButton = document.getElementById("submitButton");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function isTuesday(date) {
+      return date.getDay() === 2;
+    }
+
+    function formatTime(minutes) {
+      const hour = Math.floor(minutes / 60);
+      const minute = minutes % 60;
+      const period = hour >= 12 ? "PM" : "AM";
+      const displayHour = hour % 12 || 12;
+
+      return displayHour + ":" +
+        String(minute).padStart(2, "0") + " " + period;
+    }
+
+    function refreshSlots() {
+      timeSelect.innerHTML = "";
+
+      const now = new Date();
+
+      if (isTuesday(now)) {
+        notice.textContent =
+          "The shop is closed on Tuesdays.";
+        timeSelect.add(new Option("Shop closed today", ""));
+        submitButton.disabled = true;
+        return;
+      }
+
+      const open = 9 * 60;
+      const close = 21 * 60;
+      const current = now.getHours() * 60 + now.getMinutes();
+      const first = Math.max(open, Math.ceil(current / 15) * 15);
+
+      let count = 0;
+
+      for (let minutes = first; minutes < close; minutes += 15) {
+        timeSelect.add(new Option(formatTime(minutes), formatTime(minutes)));
+        count++;
+      }
+
+      if (count === 0) {
+        notice.textContent =
+          "Today's booking times have ended.";
+        timeSelect.add(new Option("No times available", ""));
+        submitButton.disabled = true;
+      } else {
+        notice.textContent =
+          "Open today: 9:00 AM – 9:00 PM. Select your preferred time.";
+        submitButton.disabled = false;
+      }
+    }
+
+    function readRequests() {
+      try {
+        return JSON.parse(
+          localStorage.getItem("royalCutsRequests") || "[]"
+        );
+      } catch {
+        return [];
+      }
+    }
+
+    function showRequests() {
+      const container = document.getElementById("requests");
+      container.replaceChildren();
+
+      const requests = readRequests();
+
+      if (requests.length === 0) {
+        container.textContent = "No demo requests yet.";
+        return;
+      }
+
+      requests.slice().reverse().forEach(request => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const heading = document.createElement("h3");
+        heading.textContent = request.service;
+
+        const details = document.createElement("p");
+        details.className = "muted";
+        details.textContent =
+          request.date + " • " + request.time + " • " + request.name;
+
+        const status = document.createElement("span");
+        status.className = "badge";
+        status.textContent = "DEMO — NOT CONFIRMED";
+
+        card.append(heading, details, status);
+        container.appendChild(card);
+      });
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const now = new Date();
+
+      if (isTuesday(now)) {
+        message.textContent = "The shop is closed today.";
+        return;
+      }
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const serviceElement = document.getElementById("service");
+      const service = serviceElement.value;
+      const duration = Number(
+        serviceElement.selectedOptions[0].dataset.minutes
+      );
+      const time = timeSelect.value;
+
+      if (!name || !/^[0-9]{10}$/.test(phone) || !time) {
+        message.textContent =
+          "Please check your name, phone number and time.";
+        return;
+      }
+
+      const match = time.match(/^(\d{1,2}):(\d{2}) (AM|PM)$/);
+
+      if (!match) {
+        message.textContent = "Please select a valid time.";
+        return;
+      }
+
+      let hour = Number(match[1]) % 12;
+      if (match[3] === "PM") hour += 12;
+
+      const chosen = hour * 60 + Number(match[2]);
+      const current = now.getHours() * 60 + now.getMinutes();
+
+      if (chosen < current || chosen + duration > 21 * 60) {
+        message.textContent =
+          "Please refresh the time list and choose another time.";
+        refreshSlots();
+        return;
+      }
+
+      const requests = readRequests();
+
+      requests.push({
+        name,
+        phone,
+        service,
+        time,
+        date: now.toLocaleDateString("en-IN")
+      });
+
+      try {
+        localStorage.setItem(
+          "royalCutsRequests",
+          JSON.stringify(requests)
+        );
+      } catch {
+        message.textContent =
+          "Unable to save this demo request in your browser.";
+        return;
+      }
+
+      message.textContent =
+        "Demo request saved on this device only. It has not been sent to the barber and is not a confirmed appointment.";
+
+      form.reset();
+      refreshSlots();
+      showRequests();
+    });
+
+    refreshSlots();
+    showRequests();
+
+    document.getElementById("queueCount").textContent = "—";
+    document.getElementById("waitTime").textContent = "Not connected";
+    document.getElementById("shopStatus").textContent = "Demo only";
+  </script>
+</body>
+</html>
